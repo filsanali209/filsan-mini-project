@@ -1,7 +1,14 @@
 const squares = document.querySelectorAll('.square');
+const restartGameButton = document.getElementById('RG');
+const playAgainButton = document.getElementById('PG');
+const message = document.getElementById('msg-winner')
+
 let player = 'X'
 let computer = 'O'
 let gameOver = false;
+let playerWins = 0;
+let computerWins = 0;
+let draws = 0;
 
 const wins = [
     [0, 1, 2],
@@ -54,13 +61,11 @@ function computerMove(){
         ) {
             gameOver = true;
             if (currentPlayer === player) {
-                setTimeout(() => {
-                    alert("you win!")
-                }, 0);
+                message.textContent = 'Player';
+                playerWins++
             }else{
-                setTimeout(() => {
-                    alert("you lose!")
-                }, 0);
+                message.textContent = 'Computer';
+                computerWins++
             }
             return;
         }
@@ -82,4 +87,26 @@ function computerMove(){
         }, 0);
     }
     }
+
+    function resetGame() {
+        squares.forEach(square => {
+            square.textContent = "";
+        });
+        gameOver = false;
+        message.textContent = '';
+        playerWins = 0;
+        computerWins = 0;
+    }
+    function resetCurrentGame() {
+        squares.forEach(square => {
+            square.textContent = "";
+        });
+        gameOver = false;
+        message.textContent = '';
+    }
+
+    
+    restartGameButton.addEventListener("click", resetGame)
+    playAgainButton.addEventListener("click", resetCurrentGame)
  
+
