@@ -2,6 +2,8 @@ const squares = document.querySelectorAll('.square');
 const restartGameButton = document.getElementById('RG');
 const playAgainButton = document.getElementById('PG');
 const message = document.getElementById('msg-winner')
+const playerScore = document.getElementById('player-score')
+const computerScore = document.getElementById('computer-score')
 
 let player = 'X'
 let computer = 'O'
@@ -110,3 +112,10 @@ function computerMove(){
     playAgainButton.addEventListener("click", resetCurrentGame)
  
 
+    function loadScoreBoardData() {
+        let p = row.insertCell(0);
+        p.textContent = playerWins;
+
+        let c = row.insertCell(1);
+        c.innerHTML = computerWins;
+            }
