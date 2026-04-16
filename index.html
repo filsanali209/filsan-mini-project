@@ -11,6 +11,7 @@
     <div class="msg-container">
         <p id="msg">The Winner is: <span id="msg-winner"></span></p>
         <button id="PG">Play again</button>
+        <button id="RG">Restart Game</button>
     </div>
     <div class="board">
         <div class="square top left" id="0"></div>
@@ -23,19 +24,22 @@
         <div class="square bottom middle" id="7"></div>
         <div class="square bottom right" id="8"></div>
     </div>
-    <div table-container>
-        <p>Score Board</p>
+    <div class="score-container">
+    <h2>Score Board</h2>
+    <table>
+        <thead>
         <tr>
             <th>Player</th>
             <th>Computer</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
-            <td id="player-score"></td>
-            <td id="computer-score"></td>
+            <td id="player-score">0</td>
+            <td id="computer-score">0</td>
         </tr>
-    </div>
-    <div class="gameButtons">
-        <button id="RG">Restart Game</button>
+        </tbody>
+    </table>
     </div>
 
 

@@ -65,9 +65,11 @@ function computerMove(){
             if (currentPlayer === player) {
                 message.textContent = 'Player';
                 playerWins++
+                playerScore.textContent = playerWins;
             }else{
                 message.textContent = 'Computer';
                 computerWins++
+                computerScore.textContent = computerWins;
             }
             return;
         }
@@ -97,7 +99,9 @@ function computerMove(){
         gameOver = false;
         message.textContent = '';
         playerWins = 0;
+        playerScore.textContent = playerWins;
         computerWins = 0;
+        computerScore.textContent = computerWins;
     }
     function resetCurrentGame() {
         squares.forEach(square => {
@@ -109,13 +113,4 @@ function computerMove(){
 
     
     restartGameButton.addEventListener("click", resetGame)
-    playAgainButton.addEventListener("click", resetCurrentGame)
- 
-
-    function loadScoreBoardData() {
-        let p = row.insertCell(0);
-        p.textContent = playerWins;
-
-        let c = row.insertCell(1);
-        c.innerHTML = computerWins;
-            }
+    playAgainButton.addEventListener("click", resetCurrentGame)   
