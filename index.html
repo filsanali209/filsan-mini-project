@@ -8,10 +8,12 @@
 </head>
 <body>
     <h1>Naughts and Crosses game</h1>
-    <div class="msg-container">
-        <p id="msg">The Winner is: <span id="msg-winner"></span></p>
-        <button id="PG">Play again</button>
-        <button id="RG">Restart Game</button>
+    <div class="msg-container" id="hidden-msg">
+        <p id="msg-winner"></p>
+        <div class="buttons">
+            <button id="PG">Play again</button>
+            <button id="RG">Restart Game</button>
+        </div>
     </div>
     <div class="board">
         <div class="square top left" id="0"></div>
@@ -30,12 +32,14 @@
         <thead>
         <tr>
             <th>Player</th>
+            <th>Draws</th>
             <th>Computer</th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td id="player-score">0</td>
+            <td id="draws">0</td>
             <td id="computer-score">0</td>
         </tr>
         </tbody>

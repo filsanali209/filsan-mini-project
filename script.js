@@ -1,9 +1,13 @@
 const squares = document.querySelectorAll('.square');
 const restartGameButton = document.getElementById('RG');
 const playAgainButton = document.getElementById('PG');
-const message = document.getElementById('msg-winner')
-const playerScore = document.getElementById('player-score')
-const computerScore = document.getElementById('computer-score')
+const message = document.getElementById('msg-winner');
+const playerScore = document.getElementById('player-score');
+const computerScore = document.getElementById('computer-score');
+const drawScore = document.getElementById('draws')
+const hidden = document.getElementById('hidden-msg');
+const buttons = document.querySelectorAll('.buttons')
+
 
 let player = 'X'
 let computer = 'O'
@@ -42,19 +46,14 @@ squares.forEach(square => {
 function computerMove(){
     if (gameOver) return;
     setTimeout(() => {
-        for (let i = 0; i < squares.length; i++) {
-        const square = squares[i];
-        if (square.textContent === ""){
-        square.textContent = computer;
+        const emptySquares = [...squares].filter(s => s.textContent === '');
+        const randomSquare = emptySquares[Math.floor(Math.random() * emptySquares.length)];
+        randomSquare.textContent = computer;
         checkWinner(computer);
-        break;
-        }
-    
-    }
     }, 200);
- }
+}
 
- function checkWinner(currentPlayer) {
+function checkWinner(currentPlayer) {
     for (let i = 0; i < wins.length; i++) {
         let [a, b, c] = wins[i];
         if (squares[a].textContent === currentPlayer &&
@@ -63,13 +62,16 @@ function computerMove(){
         ) {
             gameOver = true;
             if (currentPlayer === player) {
-                message.textContent = 'Player';
+                message.textContent = 'The winner is: Player';
                 playerWins++
                 playerScore.textContent = playerWins;
+                displayButtons();
+                
             }else{
-                message.textContent = 'Computer';
+                message.textContent = 'The winner is: Computer';
                 computerWins++
                 computerScore.textContent = computerWins;
+                displayButtons();
             }
             return;
         }
@@ -86,9 +88,10 @@ function computerMove(){
     
     if (isDraw && !gameOver) {
         gameOver = true;
-        setTimeout(() => {
-            alert("Draw!")
-        }, 0);
+        draws++;
+        message.textContent = 'Its a draw!';
+        drawScore.textContent = draws;
+        displayButtons();
     }
     }
 
@@ -102,6 +105,7 @@ function computerMove(){
         playerScore.textContent = playerWins;
         computerWins = 0;
         computerScore.textContent = computerWins;
+        displayButtons();
     }
     function resetCurrentGame() {
         squares.forEach(square => {
@@ -109,8 +113,24 @@ function computerMove(){
         });
         gameOver = false;
         message.textContent = '';
+        displayButtons();
     }
 
     
     restartGameButton.addEventListener("click", resetGame)
     playAgainButton.addEventListener("click", resetCurrentGame)   
+
+    function displayButtons() {
+        buttons.forEach((button) => {
+            if (gameOver) {
+                button.style.display = "block"; 
+            }else{
+                button.style.display = "none";
+            }
+        }) 
+    }
+
+    displayButtons();
+
+
+

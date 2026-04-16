@@ -40,9 +40,8 @@ h1, .msg-container{
 .square.right{
    border-right-style: hidden; 
 }
-.gameButtons{
-    display: flex;
-    flex-direction: row;
+.buttons{
+    display: none;
     justify-content: center;
     
 }
