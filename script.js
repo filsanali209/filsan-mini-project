@@ -2,18 +2,21 @@ const squares = document.querySelectorAll('.square');
 const restartGameButton = document.getElementById('RG');
 const playAgainButton = document.getElementById('PG');
 const message = document.getElementById('msg-winner');
-const playerScore = document.getElementById('player-score');
-const computerScore = document.getElementById('computer-score');
+const player1Score = document.getElementById('player1-score');
+const opponentName = document.getElementById('opponent-name');
+const opponentScore = document.getElementById('opponent-score'); 
 const drawScore = document.getElementById('draws')
 const hidden = document.getElementById('hidden-msg');
-const buttons = document.querySelectorAll('.buttons')
+const buttons = document.querySelectorAll('.buttons');
+const mode = document.getElementById('game-mode');
 
 
-let player = 'X'
-let computer = 'O'
+
+let gameMode = "computer";
+let currentPlayer = 'X';
 let gameOver = false;
-let playerWins = 0;
-let computerWins = 0;
+let player1Wins = 0;
+let opponentWins = 0;
 let draws = 0;
 
 const wins = [
@@ -28,16 +31,38 @@ const wins = [
 
 ]
 
+mode.addEventListener('change', (option) => {
+    gameMode = mode.value;
+    console.log(gameMode);
+    
+    if (gameMode === 'computer') {
+        opponentName.textContent = 'Computer'
+    }else{
+       opponentName.textContent = 'Player 2' 
+    }
+
+    resetCurrentGame();
+})
+
 // player move
 squares.forEach(square => {
     square.addEventListener("click", () => {
         if (gameOver) return; 
         if (square.textContent !== "") return;
-        square.textContent = player; 
+        square.textContent = currentPlayer; 
         
-        checkWinner(player);
+        checkWinner(currentPlayer);
         if (!gameOver) {
-            computerMove();
+            if (currentPlayer === 'X'){
+                currentPlayer = 'O';
+                message.textContent = "O's turn"
+                if (gameMode === 'computer') {
+                    computerMove();
+                }
+            }else{
+                currentPlayer = 'X';
+                message.textContent = "X's turn";
+            }
         }
     })
 });
@@ -48,29 +73,38 @@ function computerMove(){
     setTimeout(() => {
         const emptySquares = [...squares].filter(s => s.textContent === '');
         const randomSquare = emptySquares[Math.floor(Math.random() * emptySquares.length)];
-        randomSquare.textContent = computer;
-        checkWinner(computer);
+        randomSquare.textContent = 'O';
+        checkWinner('O');
+
+        if (!gameOver) {
+            currentPlayer = 'X';
+            message.textContent = "X's turn!"
+        }
     }, 200);
 }
 
-function checkWinner(currentPlayer) {
+function checkWinner(player) {
     for (let i = 0; i < wins.length; i++) {
         let [a, b, c] = wins[i];
-        if (squares[a].textContent === currentPlayer &&
-            squares[b].textContent === currentPlayer &&
-            squares[c].textContent === currentPlayer
+        if (squares[a].textContent === player &&
+            squares[b].textContent === player &&
+            squares[c].textContent === player
         ) {
             gameOver = true;
-            if (currentPlayer === player) {
-                message.textContent = 'The winner is: Player';
-                playerWins++
-                playerScore.textContent = playerWins;
+            if (player === 'X') {
+                message.textContent = 'Player Wins!';
+                player1Wins++
+                player1Score.textContent = player1Wins;
                 displayButtons();
                 
             }else{
-                message.textContent = 'The winner is: Computer';
-                computerWins++
-                computerScore.textContent = computerWins;
+                opponentWins++
+                opponentScore.textContent = opponentWins;
+                if (gameMode == 'computer') {
+                    message.textContent = 'Computer Wins!'
+                }else{
+                    message.textContent = 'Player 2 Wins!'
+                }
                 displayButtons();
             }
             return;
@@ -100,11 +134,12 @@ function checkWinner(currentPlayer) {
             square.textContent = "";
         });
         gameOver = false;
-        message.textContent = '';
-        playerWins = 0;
-        playerScore.textContent = playerWins;
-        computerWins = 0;
-        computerScore.textContent = computerWins;
+        currentPlayer = 'X';
+        message.textContent = "X's turn";
+        player1Wins = 0;
+        player1Score.textContent = player1Wins;
+        opponentWins = 0;
+        opponentScore.textContent = opponentWins;
         displayButtons();
     }
     function resetCurrentGame() {
@@ -112,11 +147,11 @@ function checkWinner(currentPlayer) {
             square.textContent = "";
         });
         gameOver = false;
-        message.textContent = '';
+        currentPlayer = 'X';
+        message.textContent = "X's turn";
         displayButtons();
     }
 
-    
     restartGameButton.addEventListener("click", resetGame)
     playAgainButton.addEventListener("click", resetCurrentGame)   
 

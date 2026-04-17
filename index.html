@@ -9,7 +9,7 @@
 <body>
     <h1>Naughts and Crosses game</h1>
     <div class="msg-container" id="hidden-msg">
-        <p id="msg-winner"></p>
+        <p id="msg-winner">X's turn!</p>
         <div class="buttons">
             <button id="PG">Play again</button>
             <button id="RG">Restart Game</button>
@@ -26,24 +26,32 @@
         <div class="square bottom middle" id="7"></div>
         <div class="square bottom right" id="8"></div>
     </div>
-    <div class="score-container">
-    <h2>Score Board</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>Player</th>
-            <th>Draws</th>
-            <th>Computer</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td id="player-score">0</td>
-            <td id="draws">0</td>
-            <td id="computer-score">0</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="score-and-mode-container">
+        <div class="score-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Player 1</th>
+                    <th>Draws</th>
+                    <th id="opponent-name">Computer</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td id="player1-score">0</td>
+                    <td id="draws">0</td>
+                    <td id="opponent-score">0</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <label for="">Choose player mode: </label>
+            <select name="game-mode" id="game-mode">
+                <option value="computer">1 player</option>
+                <option value="twoPlayer">2 players</option>
+            </select>
+        </div>
     </div>
 
 
