@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <title>Naughts and Crosses</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Naughts and Crosses game</h1>
+    <h1 class="lobster-two-regular">Naughts and Crosses game</h1>
     <div class="msg-container" id="hidden-msg">
-        <p id="msg-winner">X's turn!</p>
+        <p id="msg-winner" >X's turn!</p>
         <div class="buttons">
             <button id="PG">Play again</button>
             <button id="RG">Restart Game</button>
@@ -46,7 +49,6 @@
             </table>
         </div>
         <div>
-            <label for="">Choose player mode: </label>
             <select name="game-mode" id="game-mode">
                 <option value="computer">1 player</option>
                 <option value="twoPlayer">2 players</option>

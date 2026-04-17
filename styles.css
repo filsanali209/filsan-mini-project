@@ -1,22 +1,31 @@
 
+.lobster-two-regular {
+  font-family: "Lobster Two", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 body{
     background-color: rgb(248, 220, 224);
     font-family: Arial, Helvetica, sans-serif;
 }
 h1{
     text-align: center;
+    font-size: 40px;
 } 
 
 .msg-container{
     text-align: center;
 }
 
+
 .board{
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto;
+    gap: 4px;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 20px;
     margin-bottom: 50px;
     
 }
@@ -29,34 +38,28 @@ h1{
     width: 100px;
     border-color: black;
     border-style: solid;
+    border-radius: 15px;
     font-size: 50px;
-    
-
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(247, 108, 136, 0.2);
+}
+.square:hover{
+    background-color: rgb(255, 238, 241);
 }
 
-.square.top{
-    border-top-style: hidden;
-}
-.square.bottom{
-    border-bottom-style: hidden;
-}
-.square.left{
-    border-left-style: hidden;
-}
-.square.right{
-    border-right-style: hidden; 
-}
 .buttons > button{
     display: block;
     justify-content: center; 
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 3px;
     height: 30px;
     width: 100px;
     background-color: #FFFFFF;
     border: 1px solid #362e2e;
     border-radius: 20px;
     font-size: small;
+    cursor: pointer;
 }
 
 
@@ -80,4 +83,24 @@ td, th {
     padding: 8px;
     border-radius: 7px;
     text-align: center;
+    box-shadow: 0 4px 20px rgba(247, 108, 136, 0.2);
 }
+.winner{
+    background-color: rgb(255, 238, 241);
+    transition: 0.1s ease;
+}
+
+select{
+    width: 90px;
+    height: 30px;
+    font-size: 17px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: rgb(255, 238, 241);
+    outline: none;
+}
+select:hover{
+   border: 2px solid black ; 
+   
+}
+

@@ -80,7 +80,7 @@ function computerMove(){
             currentPlayer = 'X';
             message.textContent = "X's turn!"
         }
-    }, 200);
+    }, 700);
 }
 
 function checkWinner(player) {
@@ -90,7 +90,9 @@ function checkWinner(player) {
             squares[b].textContent === player &&
             squares[c].textContent === player
         ) {
+            
             gameOver = true;
+            highlightWin([a, b, c]);
             if (player === 'X') {
                 message.textContent = 'Player Wins!';
                 player1Wins++
@@ -132,6 +134,7 @@ function checkWinner(player) {
     function resetGame() {
         squares.forEach(square => {
             square.textContent = "";
+            square.classList.remove('winner');
         });
         gameOver = false;
         currentPlayer = 'X';
@@ -145,11 +148,18 @@ function checkWinner(player) {
     function resetCurrentGame() {
         squares.forEach(square => {
             square.textContent = "";
+            square.classList.remove('winner');
         });
         gameOver = false;
         currentPlayer = 'X';
         message.textContent = "X's turn";
         displayButtons();
+    }
+
+    function highlightWin(currentWins) {
+        currentWins.forEach(win => {
+            squares[win].classList.add('winner');
+        })
     }
 
     restartGameButton.addEventListener("click", resetGame)
