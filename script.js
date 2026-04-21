@@ -75,7 +75,6 @@ function computerMove(){
         const randomSquare = emptySquares[Math.floor(Math.random() * emptySquares.length)];
         randomSquare.textContent = 'O';
         checkWinner('O');
-
         if (!gameOver) {
             currentPlayer = 'X';
             message.textContent = "X's turn!"
@@ -178,4 +177,5 @@ function checkWinner(player) {
     displayButtons();
 
 
+    // adding new change for branch
 
