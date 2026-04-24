@@ -176,6 +176,5 @@ function checkWinner(player) {
     }
 
     displayButtons();
-
-
+// Exercise 11 change
 
